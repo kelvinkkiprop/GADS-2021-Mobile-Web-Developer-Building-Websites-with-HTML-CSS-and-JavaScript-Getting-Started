@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!----------------------------------------------------Head---------------------------------------------------->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pies | Bethany's Pie Shop</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/projects/project1/sites.css" type="text/css">
+
+    <!----------------------------------------------------Style---------------------------------------------------->
+    <style>
+        .columns{
+            display: flex;
+        }
+        @media screen and (min-width: 768px) {
+            .columns-desktop{
+                display: flex;
+            }
+        }
+        .pie{
+            width: 200px;
+            padding: 10px;
+            background-color: #fff;
+            border: solid 1px #ccc;
+        }
+        .pie img{
+            width: 100%;
+        }
+        .pie .title{
+            font-weight: bold;
+        }
+        .pie .columns{
+            width: 100%;
+        }
+        .pie .price{
+            text-align: right;
+        }
+        .pie .columns div{
+            width: 50%;
+        }
+        .pie button{
+            background-color: #f6aeae;
+            padding: 10px;
+            border: solid 1px #f6aeae;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+    </style>
+    <!----------------------------------------------------./Style---------------------------------------------------->
+
+</head>
+<!----------------------------------------------------./Head---------------------------------------------------->
+
+<!----------------------------------------------------Body---------------------------------------------------->
+<body>
+
+<!----------------------------------------------------Header---------------------------------------------------->
+<header>
+    <nav>
+        <ul>
+            <li><a href="/projects/project1/home.html">Home</a></li>
+            <li><a href="/projects/project1/pies.html">Pies</a></li>
+            <li><a href="/projects/project1/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<!----------------------------------------------------./Header---------------------------------------------------->
+
+<!----------------------------------------------------Main---------------------------------------------------->
+<main>
+
+<!----------------------------------------------------Aside---------------------------------------------------->
+<aside>
+    <img src="/projects/project1/images/logo.png" alt="Logo">
+</aside>
+<!----------------------------------------------------./Aside---------------------------------------------------->
+
+<!----------------------------------------------------Article---------------------------------------------------->
+<article>
+
+        <h1>Pies</h1>
+        
+        <section class="columns-desktop">
+
+            <div class="pie">
+                <img src="/projects/project1/images/apple-pie.png" alt="Image"/>
+                <div class="columns">
+                    <div class="title">Apple Pie</div>
+                    <div class="price">$12.95</div>
+                </div>
+                <p class="desc">Our famous apple pie</p>
+                <button data-order="apple-pie">Order</button>
+            </div>
+            
+            <div class="pie">
+                <img src="/projects/project1/images/cherry-pie.png" alt="Image"/>
+                <div class="columns">
+                    <div class="title">Cherry Pie</div>
+                    <div class="price">$15.95</div>
+                </div>
+                <p class="desc">A summer classic!</p>
+                <button data-order="cherry-pie">Order</button>
+            </div>
+
+        </section>
+</article>
+<!----------------------------------------------------./Article---------------------------------------------------->
+
+</main>
+<!----------------------------------------------------./Main---------------------------------------------------->
+
+
+<!----------------------------------------------------Footer---------------------------------------------------->
+<footer>
+    <nav>
+        <ul>
+            <li><a href="/projects/project1/home.html">Home</a></li>
+            <li><a href="/projects/project1/pies.html">Pies</a></li>
+            <li><a href="/projects/project1/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</footer>
+<!----------------------------------------------------./Footer---------------------------------------------------->
+
+
+</body>
+<!----------------------------------------------------./Body---------------------------------------------------->
+
+<!----------------------------------------------------Script---------------------------------------------------->
+<script>
+    //Onload
+    window.addEventListener("DOMContentLoaded", function(e){
+        //Get
+        const orderButtons = document.querySelectorAll("button[data-order]");
+
+        //Loop
+        orderButtons.forEach(function(button){           
+            button.addEventListener("click", function(e){
+                const button = e.currentTarget;
+                const container = button.parentNode; //Access button container
+
+                const order = {
+                    id: button.getAttribute("data-order"),
+                    title: container.querySelector(".title").innerText,
+                    price: container.querySelector(".price").innerText,
+                    desc: container.querySelector(".desc").innerText,
+                }
+                //Save, local storage cannot save an object we need to conver to string using this function
+                localStorage.setItem("order", JSON.stringify(order));
+
+                //Change url
+                const url = window.location.href.replace("pies.html", "order.html");
+                window.location.href = url;
+
+            });
+        });
+
+    });
+</script>
+<!----------------------------------------------------./Script---------------------------------------------------->
+
+
+</html>

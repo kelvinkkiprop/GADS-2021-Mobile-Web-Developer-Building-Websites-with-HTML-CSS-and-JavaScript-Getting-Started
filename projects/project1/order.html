@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!----------------------------------------------------Head---------------------------------------------------->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order | Bethany's Pie Shop</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="/projects/project1/sites.css" type="text/css">
+
+    <!----------------------------------------------------Style---------------------------------------------------->
+    <style>
+        .input-group{
+            margin-bottom: 20px;
+        }  
+        label{
+            font-weight: 600;
+        }      
+        .input-group input,
+        .input-group textarea,
+        .input-group select{
+            padding: 10px;
+            border: solid 1px #999;
+            border-radius: 2px;
+            width: 100%;
+        }
+        button[type="reset"]{
+            background: transparent;
+            border: 0;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        button[type="submit"]{
+            border: solid 1px #999;
+            border-radius: 3px;
+            padding: 10px;
+        }
+
+        @media only screen and (min-width: 768px) {
+            article{
+                width: 350px;
+            }
+        }
+        .pie{
+            width: 200px;
+            padding: 10px;
+            background-color: #fff;
+            border: solid 1px #ccc;
+        }
+        .pie img{
+            width: 100%;
+        }
+        .pie .title{
+            font-weight: bold;
+        }
+        .pie .columns{
+            width: 100%;
+        }
+        .pie .price{
+            text-align: right;
+        }
+        .pie .columns div{
+            width: 50%;
+        }
+        .pie button{
+            background-color: #f6aeae;
+            padding: 10px;
+            border: solid 1px #f6aeae;
+            border-radius: 3px;
+            color: #fff;
+        }
+
+    </style>
+    <!----------------------------------------------------./Style---------------------------------------------------->
+
+</head>
+<!----------------------------------------------------./Head---------------------------------------------------->
+
+<!----------------------------------------------------Body---------------------------------------------------->
+<body>
+
+<!----------------------------------------------------Header---------------------------------------------------->
+<header>
+    <nav>
+        <ul>
+            <li><a href="/projects/project1/home.html">Home</a></li>
+            <li><a href="/projects/project1/pies.html">Pies</a></li>
+            <li><a href="/projects/project1/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+<!----------------------------------------------------./Header---------------------------------------------------->
+
+<!----------------------------------------------------Main---------------------------------------------------->
+<main>
+
+<!----------------------------------------------------Aside---------------------------------------------------->
+<aside>
+    <img src="/projects/project1/images/logo.png" alt="Logo">
+</aside>
+<!----------------------------------------------------./Aside---------------------------------------------------->
+
+<!----------------------------------------------------Article---------------------------------------------------->
+<article>
+
+    <h1>Order</h1>
+
+    <div class="pie">
+        <img src="/projects/project1/images/apple-pie.png" alt="Image"/>
+        <div class="columns">
+            <div class="title">Apple Pie</div>
+            <div class="price">$12.95</div>
+        </div>
+        <p class="desc">Our famous apple pie</p>
+    </div>
+    
+
+    <form action=""  method="GET">
+
+        <input type="hidden" name="pie-order" id="pie-order">
+        <input type="hidden" name="location" id="location">
+
+        <div class="input-group">
+            <div><label for="name">Name</label></div>
+            <div><input type="text" name="name" id="name"/></div>
+        </div>
+
+        <div class="input-group">
+            <div><label for="address">Address</label></div>
+            <div><input type="text" name="address" id="address"/></div>
+        </div>
+
+        <div class="input-group">
+            <div><label for="state">State</label></div>
+            <div>
+                <select name="state" id="state">
+                    <option value="" selected>[ Select one ]</option>
+                    <option value="Alabama">Alabama</option>
+                    <option value="Alaska">Alaska</option>
+                    <option value="Arizona">Arizona</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <div><label for="postal-code">Postal code</label></div>
+            <div><input type="text" name="postal-code" id="postal-code"/></div>
+        </div>
+
+        <div class="input-group">
+            <div><label for="comments">Comments</label></div>
+            <div><textarea type="text" name="comments" id="comments" cols="30" rows="10"></textarea></div>
+        </div>
+
+        <button type="submit" value="submit">Submit</button>
+        <button type="reset" value="reset">Reset</button>
+
+    </form>
+
+
+</article>
+<!----------------------------------------------------./Article---------------------------------------------------->
+
+</main>
+<!----------------------------------------------------./Main---------------------------------------------------->
+
+
+<!----------------------------------------------------Footer---------------------------------------------------->
+<footer>
+    <nav>
+        <ul>
+            <li><a href="/projects/project1/home.html">Home</a></li>
+            <li><a href="/projects/project1/pies.html">Pies</a></li>
+            <li><a href="/projects/project1/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</footer>
+<!----------------------------------------------------./Footer---------------------------------------------------->
+
+
+</body>
+<!----------------------------------------------------./Body---------------------------------------------------->
+
+<!----------------------------------------------------Script---------------------------------------------------->
+<script>
+    //DOMContentLoaded
+    window.addEventListener("DOMContentLoaded", function(e){
+        //Get user location
+        let locatinBox = document.querySelector("#location");
+        let location = {
+            latitude: 'unknown',
+            longitude: 'unknown',
+        };
+        //request access to user location
+        window.navigator.geolocation.getCurrentPosition(
+        function(position){
+            let location = {
+                latitude: position.coords.latitude,
+                longitude:  position.coords.longitude,
+            };
+            locatinBox.value = JSON.stringify(location);
+        },
+        function(error){
+            locatinBox.value = JSON.stringify(location);
+        });
+
+
+        //Get
+        const order = localStorage.getItem("order");
+        if (order){
+            //decode
+            const pieOrder = JSON.parse(order);
+            //Get .pie class html attributes
+            const pie = document.querySelector(".pie");
+            const title = pie.querySelector(".title");
+            const price = pie.querySelector(".price");
+            const desc = pie.querySelector(".desc");
+            const img = pie.querySelector("img");
+            const orderInput = document.querySelector("#pie-order");
+            orderInput.value = order;
+
+            //Set
+            title.innerText = pieOrder.title;
+            price.innerText = pieOrder.price;
+            desc.innerText = pieOrder.desc;
+            img.setAttribute("src", `/projects/project1/images/${pieOrder.id}.png`);
+            // console.log(pieOrder.id);
+            img.setAttribute("alt", pieOrder.title);
+
+        }else{
+            //return user to
+            const url = window.location.href.replace("order.html", "pies.html");
+                window.location.href = url;
+        }
+
+    });
+</script>
+<!----------------------------------------------------./Script---------------------------------------------------->
+
+
+</html>

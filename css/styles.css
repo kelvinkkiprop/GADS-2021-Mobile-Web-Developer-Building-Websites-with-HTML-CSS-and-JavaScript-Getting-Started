@@ -1,0 +1,60 @@
+/*----------------------------------------------------Common----------------------------------------------------*/
+body{
+    padding: 50px;
+    background-color: #eee;
+}
+/*----------------------------------------------------./Common----------------------------------------------------*/
+
+
+/*----------------------------------------------------Common HTML Tags----------------------------------------------------*/
+
+/*----------------------------------------------------./Common HTML Tags----------------------------------------------------*/
+
+
+/*----------------------------------------------------Introduction to CSS----------------------------------------------------*/
+/* Columns */
+.columns-with-float{
+    width: 100%;
+    border: solid 1px #ccc;
+}
+.columns-with-float > div {
+    width: 49%;
+    border: solid 1px #ddd;
+    float: left;
+}
+
+.columns-with-flexbox{
+    border: solid 1px #39f;
+    display: flex;
+}
+.columns-with-flexbox > div {
+    border: solid 1px #ddd;
+    flex: 1;
+}
+.columns-with-flexbox > div:nth-of-type(2) {
+    flex: 2;
+}
+
+/* MediaQueries */
+.desktop,.print{
+    display: none;
+}
+@media print {
+    .desktop,.mobile{
+        display: none;
+    }  
+    .print{
+        display: block;
+    }
+}
+@media screen and (min-width: 768px) {
+    .mobile{
+        display: none;
+    }
+    .desktop{
+        display: block;
+    }
+}
+/*----------------------------------------------------./Introduction to CSS----------------------------------------------------*/
+
+

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!----------------------------------------------------Head---------------------------------------------------->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Basics</title>
+
+    <!----------------------------------------------------Style---------------------------------------------------->
+    <style>
+        .card{
+            border: solid 1px #ccc;
+            padding: 10px;
+            margin-bottom: 5px;
+        }
+        .card > ul{
+            padding: 0;
+        }
+        .card > ul> li{
+            list-style: none;
+            display: inline-block;
+            margin: 0 5px 0 5px;
+            background-color: #36fc;            
+        }
+        .dark{
+            background-color:#000;
+            color: #fff;
+        }
+    </style>
+    <!----------------------------------------------------./Style---------------------------------------------------->
+
+</head>
+<!----------------------------------------------------./Head---------------------------------------------------->
+
+<!----------------------------------------------------Body---------------------------------------------------->
+<body>
+
+<section id="kelvin-kiprop" class="card">
+    <h1 >Kelvin Kiprop</h1>
+    <ul>
+        <li><a href="#" class="tag">Twitter</a></li>
+        <li><a href="#" class="tag">Github</a></li>
+    </ul>
+</section>
+
+<section id="kelvin-kibiwott" class="card">
+    <h1 >Kelvin Kibiwott</h1>
+    <ul>
+        <li><a href="#" class="tag">Twitter</a></li>
+        <li><a href="#" class="tag">Github</a></li>
+    </ul>
+</section>
+
+
+</body>
+<!----------------------------------------------------./Body---------------------------------------------------->
+
+
+  <!----------------------------------------------------Script---------------------------------------------------->
+  <script>
+
+      //BASICS
+      //Variables
+      let name = "Kip";
+      name = "Kelly";
+      console.log(name);
+
+      const maxQuantity = 3;
+    //   maxQuantity = 2;
+      console.log(maxQuantity);
+
+      //Concatinations
+      let name1 = "Kelvin";
+      let name2 = "Kiprop";
+      let fullName = name1+" "+name2;
+      console.log(fullName);
+
+      //Booleans
+      console.log(1+1==2);
+      console.log(1+2==2);
+
+      //Control Flow: Blocks
+        let first_name ="Kelvin";
+      {
+        let first_name ="Kevoh3";
+        console.log(first_name);
+      }
+     
+       //Control Flow: if statement
+       if(first_name==="Kelvin1"){
+        console.log(first_name);
+       }else if(first_name==="Kelvin"){
+            console.log("Kelvin is that you?");
+       }else{
+        console.log("Wait, where is Kelvin");
+       }
+
+       //Declaring functions
+       function greetings(){
+           console.log("Hello World");
+       }
+       //Call
+       greetings();
+
+       //Padding Data into a function
+       let last_name = "Kibiwott";
+       function otherGreetings(last_name){
+        console.log("Hi, "+first_name);
+       }
+       //call
+       let othername = "Kibii"
+       otherGreetings("Kelvin");
+       otherGreetings(othername);
+
+       //Returning data from a function
+       function lastGreetings(name){
+           let message = "Hello "+name;
+           return message;
+       }
+       //Call
+       let middle_name = "Kibiwott";
+       let message = lastGreetings(middle_name);
+       console.log(message);
+
+       //Object Literals
+       let facebook = "Kelvin1";
+       let twitter = "Kelvin2";
+       let instagram = "Kelvin3";
+       let person = {
+           facebook: "Kelvin1",
+           twitter: "Kelvin2",
+           instagram: "Kelvin3",
+           greet: function() {
+               console.log("May name is "+this.facebook);
+           }
+       }
+       console.log(person.facebook+" "+person.twitter);
+      //Call
+      person.greet();
+
+      //Arrays
+      let array = [1,"Kelvin",true];
+      console.log(array);
+      console.log(array[1]);//At index
+      console.log(array.reverse());//Reverse
+      array.push("New Item");//Add new item
+      console.log(array);
+      array.splice(1);//Remove an item from 0 to the given index
+      console.log(array);
+
+      //Loops
+      //While loop
+      let count = 0;
+      let max = 10;
+      while(count < max){          
+          console.log(count);
+        //   count = count+1
+        count++;
+      }
+      //For loop
+      for(let i = 0; i<10; i++){
+          console.log(i);
+      }
+      let myArray = [1, "Kevin", false]
+      for(let i = 0; i<myArray.length; i++){
+          console.log(myArray[i]);
+      }
+      //Foreach loop
+      let days = ["Mon", "Tue", "Wed", "Thu", "Fri"]
+      days.forEach(function(day, index){
+        console.log(`Day: ${day}, index: ${index}`);
+      });
+
+
+      //INTERACTIVITY
+      //All links
+      let links = document.querySelectorAll(".tag");
+      links.forEach(function(link) {
+          link.removeAttribute("target", "_blank");
+          link.setAttribute("target", "_blank");
+      });
+  </script>
+  <!----------------------------------------------------./Script---------------------------------------------------->
+    
+
+
+</html>

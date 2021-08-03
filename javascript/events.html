@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!----------------------------------------------------Head---------------------------------------------------->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creating Interactivity with JavaScript</title>
+
+    <!----------------------------------------------------Style---------------------------------------------------->
+    <style>
+ 
+    </style>
+    <!----------------------------------------------------./Style---------------------------------------------------->
+
+</head>
+<!----------------------------------------------------./Head---------------------------------------------------->
+
+<!----------------------------------------------------Body---------------------------------------------------->
+<body>
+
+
+  <button id="click-me">Click Me</button>
+
+</body>
+<!----------------------------------------------------./Body---------------------------------------------------->
+
+
+  <!----------------------------------------------------Script---------------------------------------------------->
+ <!-- Script Tag -->
+  <script type="text/javascript">
+    //Tells as that the page has loaded
+    window.addEventListener("DOMContentLoaded", function(e){
+      console.log("The page is loaded");
+    });
+
+    //Button click
+    let btn = document.querySelector("#click-me");
+    btn.addEventListener("click", function(e){
+      console.log("The button was clicked");
+    });
+
+    //On page orientation change
+    window.addEventListener("orientationchange", function(e){
+      //Get
+      let screen = window.screen;
+      let angle = screen.orientation.angle;
+      let type = screen.orientation.type;
+      //Show
+      console.log(`angle: ${angle}, type ${type}`);
+
+    });
+
+  </script>
+  <!----------------------------------------------------./Script---------------------------------------------------->
+    
+
+
+</html>
